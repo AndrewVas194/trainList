@@ -29,20 +29,61 @@
         padding:3px;
         }
         table{
+        left:10px;
         border-radius:5px;
         background-color:
+        }
+        .back{
+        border-radius:5px;
+        border:1px solid black;
+        background-color:rgb(220, 220, 220);
+        padding:5px;
+        color:black;
         }
     </style>
 </head>
 <body>
+<header th:insert="basicpages/header::header"></header>
+<table style="left:10px; border-radius:0px;">
+    <tr>
+        <td>
+            <form method="get" action="fromSend">
+                <select type="text" name="filter1" id="filter1" placeholder="Введите город отбытия">
+                    <option hidden>Откуда едем</option>
+                    <option value="Grodno">Гродно</option>
+                    <option value="Brest">Брест</option>
+                    <option value="Baranovichi">Барановичи</option>
+                </select>
+                <button type="submit">Найти</button> <button type="reset">Отменить</button>
+            </form>
+        </td>
+
+        <td>
+            <form method="get" action="toSend">
+                <select type="text" name="filter" id="filter" placeholder="Введите город прибытия">
+                    <option hidden>Куда отправимся</option>
+                    <option value="Minsk">Минск</option>
+                    <option value="Berlin">Берлин</option>
+                    <option value="Warshava">Варшава</option>
+                    <option value="Vilnus">Вильнюс</option>
+                    <option value="Riga">Рига</option>
+                    <option value="Kiev">Киев</option>
+                </select>
+                <button type="submit">Найти</button> <button type="reset">Отменить</button>
+                <span class="back"><a href="/train/list">Вернуться</a></span>
+            </form>
+        </td>
+    </tr>
+</table>
+
 <table style="border-radius:5px;" th:each="element : ${trains}" class="product-item alert alert-info mt-2">
     <tr>
     <td class="nameTr"><h3 th:text="'Название поезда: ' + ${element.trains_name}"/></td>
     <td class="nameTr"></td>
     </tr>
     <tr>
-        <td class="td_send"><p th:text="'Город отправления: '+${element.send_from}"/></td>
-        <td class="td_send"><p th:text="'Город прибытия: '+${element.place_to_send}"/></td>
+        <td class="td_send"><p th:text="'Город отправления: '+${element.sendfrom}"/></td>
+        <td class="td_send"><p th:text="'Город прибытия: '+${element.tosend}"/></td>
     </tr>
     <tr>
         <td style="border-style:outset; border:3px;"><p th:text="'Время отхода поезда: '+${element.time_to_send}"/></td>
