@@ -30,7 +30,7 @@ public class RegistrationController {
        if(userFromdb !=null){
            model.addAttribute("message","User exists!");
            model.addAttribute("title","Error login");
-           return "error";
+           return "error-register";
        }
 
        user.setActive(true);

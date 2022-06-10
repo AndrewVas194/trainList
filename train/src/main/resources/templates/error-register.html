@@ -7,27 +7,9 @@
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3/3843.png" sizes="16x16">
 </head>
 <body>
-
-<table th:each="el : ${users}">
-    <thead>
-    <tr>
-        <th> name </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-
-        <td><p th:text="${el.username}"/></td>
-        <td><a th:href="@{'/user/'+${el.id}}">edit </a></td>
-    </tr>
-    </tbody>
-</table>
-
-
-
-<!--<form action="/user/remove/${user.id}">
-    <button type="submit">Delete</button>
-</form>-->
-
+<form>
+    <p align="center">Ошибка, такой аккаунт уже есть</p>
+    <p class="message">Back to <a href="/registration">registration</a></p>
+</form>
 </body>
 </html>

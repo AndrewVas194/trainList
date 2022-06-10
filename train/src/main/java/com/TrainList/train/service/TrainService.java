@@ -13,12 +13,12 @@ public class TrainService {
     private TrainRepository trainRepository;
 
 
-    public void saveTrainToDB( String trains_name, String sendfrom, String tosend,
+    public void saveTrainToDB( String trainsName, String sendfrom, String tosend,
                                 String time_to_send, Integer count_site_places, String price)
     {
         Train train=new Train();
         /*train.setId(id);*/
-        train.setTrains_name(trains_name);
+        train.setTrainsName(trainsName);
         train.setSendfrom(sendfrom);
         train.setTosend(tosend);
         train.setTime_to_send(time_to_send);

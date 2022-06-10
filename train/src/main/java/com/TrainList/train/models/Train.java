@@ -9,7 +9,7 @@ public class Train {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String trains_name;
+    private String trainsName;
     private String sendfrom;
     private String tosend;
     private String time_to_send;
@@ -20,8 +20,8 @@ public class Train {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getTrains_name() { return trains_name; }
-    public void setTrains_name(String trains_name) { this.trains_name = trains_name; }
+    public String getTrainsName() { return trainsName; }
+    public void setTrainsName(String trainsName) { this.trainsName = trainsName; }
 
     public String getSendfrom() { return sendfrom; }
     public void setSendfrom(String sendfrom) { this.sendfrom = sendfrom; }
@@ -42,10 +42,10 @@ public class Train {
     public Train() {
     }
 
-    public Train(String trains_name, String sendfrom, String tosend,
+    public Train(String trainsName, String sendfrom, String tosend,
                  String time_to_send, Integer count_site_places, String price) {
 
-        this.trains_name = trains_name;
+        this.trainsName = trainsName;
         this.sendfrom = sendfrom;
         this.tosend = tosend;
         this.time_to_send = time_to_send;

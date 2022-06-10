@@ -4,12 +4,10 @@ import com.TrainList.train.models.Role;
 import com.TrainList.train.models.User;
 import com.TrainList.train.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -18,15 +16,35 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
 
     @GetMapping
     public String userList(Model model){
-        model.addAttribute("users",userRepository.findAll());
+        Iterable<User> users = userRepository.findAll();
+        model.addAttribute("users",users);
+        model.addAttribute("roles",Role.values());
         return "userList";
     }
+
+    @GetMapping("{user}")
+    public String userEdit(@PathVariable User user, Model model){
+        model.addAttribute("user",user);
+        model.addAttribute("roles",Role.values());
+        return "userEdit";
+    }
+
+    /*@GetMapping("/remove/{user}")
+    public String userDelete(@PathVariable User user, Model model) {
+        Iterable<User> deleteUser = userRepository.findByUser(user);
+        userRepository.deleteAll(deleteUser);
+        user.getRoles().clear();
+        userRepository.delete(user);
+        model.addAttribute("user",user);
+        return "redirect:/user";
+    }*/
 
     @PostMapping
     public String userSave(

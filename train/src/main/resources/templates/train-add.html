@@ -11,7 +11,7 @@
 <div class="container mt-5 mb-5">
     <h1 align="center">Добавление поезда</h1>
     <form action="/train/add" method="post">
-        <input type="text" name="trains_name" id="trains_name" placeholder="Название поезда" class="form-control"required><br>
+        <input type="text" name="trainsName" id="trainsName" placeholder="Название поезда" class="form-control"required><br>
         <select type="text" name="sendfrom" id="sendfrom" placeholder="Точка отправки" class="form-control" required>
             <!--<option hidden>Откуда едем</option>-->
             <option value="Grodno">Гродно</option>
@@ -30,10 +30,13 @@
         <input type="datetime-local" name="time_to_send" id="time_to_send" min="2022-05-11T9:00" max="2022-06-11T9:00" placeholder="Время отправки" class="form-control" required><br>
         <input type="text" name="count_site_places" min="1" id="count_site_places" placeholder="Количество мест" class="form-control" required><br>
         <input type="text" name="price" id="price" placeholder="цена билета" class="form-control" required><br>
-        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
         <div align="left">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+            <http auto-config="true">
+                <intercept-url pattern="/train/add" access="isAuthenticated" method="GET" />
+                <intercept-url pattern="/train/add" access="hasRole('ADMIN')" method="POST" />
+            </http>
             <button type="submit" class="btn btn-success">Добавить поезд</button>
-
         </div>
     </form>
 </div>

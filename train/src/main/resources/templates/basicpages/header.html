@@ -16,7 +16,7 @@
             <form class="form-inline my-2 my-lg-0" th:action="@{/login}" method="post">
                 <div><input class="form-control mr-sm-2" type="submit" value="Sign In"/></div>
             </form>
-
+            <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
         </nav>
     </div>
 </div>
