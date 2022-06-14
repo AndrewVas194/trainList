@@ -16,9 +16,7 @@
     </div>
     <input type="hidden" th:value="${user.id}" name="userId">
     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-    <form action="/user/remove/${user.id}">
-        <button type="submit">Delete</button>
-    </form>
+
     <button type="submit">Сохранить</button>
 </form>
 

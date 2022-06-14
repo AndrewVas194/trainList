@@ -19,10 +19,15 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registration(Model model){
+        model.addAttribute("title","Регистрация");
         return "registration";
     }
 
-
+    @GetMapping("/login")
+    public String login(Model model){
+        model.addAttribute("title","Авторизация");
+        return "login";
+    }
 
     @PostMapping("/registration")
     public String addUser(User user , Model model){
@@ -32,7 +37,6 @@ public class RegistrationController {
            model.addAttribute("title","Error login");
            return "error-register";
        }
-
        user.setActive(true);
        user.setRoles(Collections.singleton(Role.USER));
        userRepository.save(user);

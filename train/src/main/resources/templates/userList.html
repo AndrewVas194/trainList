@@ -11,7 +11,7 @@
 <table th:each="el : ${users}">
     <thead>
     <tr>
-        <th> name </th>
+        <th>name</th>
     </tr>
     </thead>
     <tbody>
@@ -19,6 +19,11 @@
 
         <td><p th:text="${el.username}"/></td>
         <td><a th:href="@{'/user/'+${el.id}}">edit </a></td>
+        <td>
+        <form th:action="'/user/'+${el.id}+'/remove'" method="post">
+            <button type="submit">Удалить</button>
+        </form>
+        </td>
     </tr>
     </tbody>
 </table>

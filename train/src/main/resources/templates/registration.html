@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<title th:text="${title}"/>
+
 <head>
-    <title>Spring Security Example </title>
+    <title th:text="${title}"/>
     <style>
         .login-page {
   width: 360px;
@@ -109,14 +109,25 @@ body {
     <div class="form">
         <form th:action="@{/registration}" method="post">
             <h2 align="center">Регистрация</h2>
-            <input type="text" name="username" placeholder="login"/>
-            <input type="password" name="password" placeholder="password"/>
+            <input type="text" name="username" placeholder="login" required/>
+            <input type="email" pattern="[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(/.[a-zA-Z0-9-]+)*" id="email" name="email" placeholder="email@gmail.com" required>
+            <input type="password" id="password1" name="password" placeholder="password" required/>
+            <input type="password" id="password2" name="checkPass" placeholder="check password" required>
             <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
-            <div><input type="submit" value="Sign In"/></div>
+            <div><input type="submit" onclick="validatePassword();" value="Sign In"/></div>
             <p class="message">Are you register? <a href="/login">Sign on account</a></p>
         </form>
     </div>
 </div>
-
+<script>
+        function validatePassword(){
+            var pass2 = document.getElementById("password1").value;
+            var pass1 = document.getElementById("password2").value;
+            if(pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Пароли не совпадают");
+            else
+                document.getElementById("password2").setCustomValidity('');
+        }
+</script>
 </body>
 </html>
