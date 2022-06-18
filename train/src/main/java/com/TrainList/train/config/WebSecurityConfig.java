@@ -37,22 +37,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/","/registration","/travel","/train/list","/train/toSend","/train/fromSend").permitAll()
-                    .antMatchers("/buy/ticket/{id}").hasAuthority(USER.getAuthority())
+                    .antMatchers("/train/buy/ticket/{id}","/user/account").hasAuthority(USER.getAuthority())
                     .antMatchers("/**").hasAuthority(ADMIN.getAuthority())
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
                     .loginPage("/login")
+                    .defaultSuccessUrl("/")
                     .permitAll()
                 .and()
                     .logout()
-                    .permitAll();
-
-
-
-       /* http.authorizeRequests().antMatchers("/","/registration","/travel","/train/list",
-                "/user","user","/train/add").hasRole(Collections.singleton(ADMIN).toString())
-                .antMatchers(HttpMethod.POST).hasRole(Collections.singleton(ADMIN).toString());*/
+                    .permitAll()
+                    .logoutSuccessUrl("/");
 
     }
 

@@ -10,14 +10,27 @@
 
 <form action="/user" method="post">
     <input type="text" name="username" th:value="${user.username}">
+
     <div th:each="role : ${roles}">
         <input type="checkbox" th:name="${role}" th:checked="${#lists.contains(user.getRoles(), role)}">
-        <label th:text="${role}" /></label>
+        <label th:text="${role}" />
     </div>
+
+    <div>
+        <input type="checkbox" name="active" th:checked="${user.active}">
+        <label th:text="Активность" />
+    </div>
+
     <input type="hidden" th:value="${user.id}" name="userId">
     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
 
-    <button type="submit">Сохранить</button>
+    <button type="submit" >Сохранить</button>
+</form>
+
+<form action="/user/{user}/turnOff" method="post">
+    <input type="hidden" th:value="${user.id}" name="userId">
+    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+    <button type="submit">Отключить</button>
 </form>
 
 </body>

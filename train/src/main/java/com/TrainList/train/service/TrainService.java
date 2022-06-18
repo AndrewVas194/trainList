@@ -25,8 +25,5 @@ public class TrainService {
         train.setCount_site_places(count_site_places);
         train.setPrice(price);
         trainRepository.save(train);
-
     }
-
-
 }

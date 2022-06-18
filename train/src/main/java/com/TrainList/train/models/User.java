@@ -14,9 +14,15 @@ public class User implements UserDetails  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "username")
     private String username;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "password")
     private String password;
+    @Column(name = "active")
     private boolean active;
+
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn (name = "user_id"))
@@ -27,6 +33,7 @@ public class User implements UserDetails  {
     public void setId(Long id) { this.id = id; }
 
     public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 
     @Override
     public boolean isAccountNonExpired() { return true; }
@@ -36,12 +43,15 @@ public class User implements UserDetails  {
     public boolean isCredentialsNonExpired() { return true; }
     @Override
     public boolean isEnabled() { return isActive(); }
-    public void setUsername(String username) { this.username = username; }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() { return getRoles(); }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
     public boolean isActive() { return active; }
     public void setActive(boolean active) { this.active = active; }

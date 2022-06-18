@@ -21,18 +21,20 @@
         <td><a th:href="@{'/user/'+${el.id}}">edit </a></td>
         <td>
         <form th:action="'/user/'+${el.id}+'/remove'" method="post">
-            <button type="submit">Удалить</button>
+            <button type="submit" onclick="checkDelete();">Удалить</button>
         </form>
         </td>
     </tr>
     </tbody>
 </table>
 
-
-
-<!--<form action="/user/remove/${user.id}">
-    <button type="submit">Delete</button>
-</form>-->
-
+<script>
+    function checkDelete(){
+    let result = confirm("Вы согласны с удалением?");
+    if(result){
+    }
+    else{return false;}
+    }
+</script>
 </body>
 </html>
