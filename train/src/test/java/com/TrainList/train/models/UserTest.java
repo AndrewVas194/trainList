@@ -47,7 +47,7 @@ class UserTest {
 
     @Test
     void setActive() {
-        user.setActive(true);
+        user.setActive(false);
         assertTrue(true);
     }
 
